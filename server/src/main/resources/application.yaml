@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: server
+  datasource:
+    url: jdbc:mysql://localhost:3306/app_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: db_user
+    password: dev_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+
+  jpa:
+    hibernate:
+      ddl-auto: validate # Best practice when using Liquibase
+    show-sql: true
+  mail:
+    host: s1354.use1.mysecurecloudhost.com
+    port: 587
+    username: ${SMTP_USERNAME:noreply@pymerstan.com}
+    password: ${SMTP_PASSWORD:noreply@pymerstan}
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true                    # <-- Enabled for Port 587
+            required: true
+
+
+file:
+  upload-dir: ./uploads
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000
+      refresh-token:
+        expiration: 2592000000

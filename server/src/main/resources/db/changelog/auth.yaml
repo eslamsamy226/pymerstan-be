@@ -1,0 +1,201 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-roles-table
+      author: system-revamp
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+  - changeSet:
+      id: 2-insert-default-roles
+      author: system-revamp
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: 'SUPER_ADMIN'
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: 'ADMIN'
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: 'INSTRUCTOR'
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: 'STUDENT'
+
+  - changeSet:
+      id: 3-create-users-table
+      author: system-revamp
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              # New Core ID Field (No role_id here anymore!)
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              # Exact Legacy Core & Auth Fields
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: phone
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: photo
+                  type: text
+              - column:
+                  name: added_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: visiable
+                  type: boolean
+                  constraints:
+                    nullable: false
+
+              # Legacy Name Conflict
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: fname
+                  type: varchar(255)
+
+              # Legacy Users Table Specific
+              - column:
+                  name: address
+                  type: varchar(255)
+              - column:
+                  name: type
+                  type: varchar(50)
+
+              # Legacy Students Table Specific
+              - column:
+                  name: job_id
+                  type: int
+              - column:
+                  name: other_job
+                  type: varchar(50)
+              - column:
+                  name: gender
+                  type: varchar(50)
+              - column:
+                  name: code
+                  type: varchar(255)
+              - column:
+                  name: whatsapp
+                  type: varchar(50)
+              - column:
+                  name: country
+                  type: int
+              - column:
+                  name: message
+                  type: varchar(255)
+              - column:
+                  name: password2
+                  type: varchar(50)
+
+              # Legacy Lecturer & Student Shared
+              - column:
+                  name: cv
+                  type: text
+
+              # Legacy Lecturer Table Specific
+              - column:
+                  name: course_found_or_no
+                  type: varchar(10)
+              - column:
+                  name: course_id
+                  type: varchar(255)
+              - column:
+                  name: accept_no
+                  type: varchar(50)
+
+              - column:
+                  name: is_verified
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_data_completed
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 4-create-user-roles-join-table
+      author: system-revamp
+      changes:
+        - createTable:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_userroles_user_id
+                    references: users(id)
+              - column:
+                  name: role_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_userroles_role_id
+                    references: roles(id)
+        # Composite primary key ensures a user can't be assigned the exact same role twice
+        - addPrimaryKey:
+            tableName: user_roles
+            columnNames: user_id, role_id
+            constraintName: pk_user_roles

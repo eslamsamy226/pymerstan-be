@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5-make-username-nullable
+      author: system-revamp
+      changes:
+        - dropNotNullConstraint:
+            tableName: users
+            columnName: username
+            columnDataType: varchar(255)
+  - changeSet:
+      id: 6-create-countries-table
+      author: system-revamp
+      changes:
+        - createTable:
+            tableName: countries
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: visiable
+                  type: boolean
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 7-insert-legacy-countries
+      author: system-revamp
+      changes:
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 1 } }, { column: { name: name, value: 'Egypt' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 2 } }, { column: { name: name, value: 'Emirates' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 3 } }, { column: { name: name, value: 'Saudi Arabia' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 4 } }, { column: { name: name, value: 'Other' } }, { column: { name: visiable, valueBoolean: false } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 5 } }, { column: { name: name, value: 'USA' } }, { column: { name: visiable, valueBoolean: false } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 6 } }, { column: { name: name, value: 'Sudan' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 7 } }, { column: { name: name, value: 'The United States of America' } }, { column: { name: visiable, valueBoolean: false } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 8 } }, { column: { name: name, value: 'Qatar' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 9 } }, { column: { name: name, value: 'Syria' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 10 } }, { column: { name: name, value: 'Iraq' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 11 } }, { column: { name: name, value: 'Palestine' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 12 } }, { column: { name: name, value: 'Jordan' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 13 } }, { column: { name: name, value: 'Kuwait' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 14 } }, { column: { name: name, value: 'Bahrain' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 15 } }, { column: { name: name, value: 'Lebanon' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 16 } }, { column: { name: name, value: 'Libya' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 17 } }, { column: { name: name, value: 'Oman' } }, { column: { name: visiable, valueBoolean: true } } ] }
+        - insert: { tableName: countries, columns: [ { column: { name: id, valueNumeric: 18 } }, { column: { name: name, value: 'Yemen' } }, { column: { name: visiable, valueBoolean: true } } ] }

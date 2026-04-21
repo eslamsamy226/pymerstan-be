@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 8-create-user-otps-table
+      author: system-revamp
+      changes:
+        - createTable:
+            tableName: user_otps
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    unique: true
+                    foreignKeyName: fk_user_otps_user_id
+                    references: users(id)
+              - column:
+                  name: otp
+                  type: varchar(6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expiry_date
+                  type: datetime
+                  constraints:
+                    nullable: false

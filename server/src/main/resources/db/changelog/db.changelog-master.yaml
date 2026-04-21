@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: db_user
+
+  - include:
+      file: auth.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: countries.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: otps.yaml
+      relativeToChangelogFile: true
