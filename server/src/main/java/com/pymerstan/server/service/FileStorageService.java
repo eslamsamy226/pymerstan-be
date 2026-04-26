@@ -2,11 +2,14 @@ package com.pymerstan.server.service;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -67,5 +70,29 @@ public class FileStorageService {
             return filename.substring(dotIndex);
         }
         return "";
+    }
+
+    // --- Added Resource Loading Methods for FileController ---
+
+    public Resource loadPhotoAsResource(String fileName) {
+        return loadFileAsResource(fileName, this.photoStorageLocation);
+    }
+
+    public Resource loadCvAsResource(String fileName) {
+        return loadFileAsResource(fileName, this.cvStorageLocation);
+    }
+
+    private Resource loadFileAsResource(String fileName, Path storageLocation) {
+        try {
+            Path filePath = storageLocation.resolve(fileName).normalize();
+            Resource resource = new UrlResource(filePath.toUri());
+            if (resource.exists() && resource.isReadable()) {
+                return resource;
+            } else {
+                throw new RuntimeException("File not found or not readable: " + fileName);
+            }
+        } catch (MalformedURLException ex) {
+            throw new RuntimeException("File not found: " + fileName, ex);
+        }
     }
 }

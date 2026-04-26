@@ -1,0 +1,529 @@
+{
+  "info": {
+    "_postman_id": "a63d12d2-d5aa-448f-9427-2c64e48749c6",
+    "name": "pymerstan",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52017494",
+    "_collection_link": "https://go.postman.co/collection/52017494-a63d12d2-d5aa-448f-9427-2c64e48749c6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "sign up",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "tester",
+              "type": "text",
+              "uuid": "54ea55e7-a31f-4cda-a917-0d813af14fed"
+            },
+            {
+              "key": "password",
+              "value": "securePassword123",
+              "type": "text",
+              "uuid": "f422153f-c354-42af-b561-fd5628323b62"
+            },
+            {
+              "key": "phone",
+              "value": "+201234567890",
+              "type": "text",
+              "uuid": "20b30471-2fbe-4d5d-a526-5a3f9623ec0a"
+            },
+            {
+              "key": "whatsapp",
+              "value": "+201234567890",
+              "type": "text",
+              "uuid": "f1daa1ec-01b0-4565-827e-8c5b749dbc87"
+            },
+            {
+              "key": "gender",
+              "value": "male",
+              "type": "text",
+              "uuid": "1601799c-35ad-471f-80d4-ba9b49b51e85"
+            },
+            {
+              "key": "country",
+              "value": "1",
+              "type": "text",
+              "uuid": "596d17e9-3a3f-4edf-a02d-a51224ac354d"
+            },
+            {
+              "key": "job",
+              "value": "Software Engineer",
+              "type": "text",
+              "uuid": "62babe5b-d931-4acf-8791-514bf914ce29"
+            },
+            {
+              "key": "type",
+              "value": "Individual",
+              "type": "text",
+              "uuid": "dc67d85f-a815-48ef-a5a9-9616135305a8"
+            },
+            {
+              "key": "message",
+              "value": "Hello, I would like to register.",
+              "type": "text",
+              "uuid": "9b8067a1-b1fb-4d32-a0e8-c6c861870cf6"
+            },
+            {
+              "key": "code",
+              "value": "COMP123",
+              "type": "text",
+              "uuid": "d85e849e-60a9-462b-8449-c66e39d8c68e"
+            },
+            {
+              "key": "email",
+              "value": "test@tes.com",
+              "type": "text",
+              "uuid": "91cb8907-8148-4609-9086-4e3bbb3e19d2"
+            },
+            {
+              "key": "cv",
+              "type": "file",
+              "uuid": "4644781e-0bdb-489a-b409-c11d3606d255",
+              "src": "/Users/eslam/Downloads/Eslam_Samy_CV (1).pdf"
+            },
+            {
+              "key": "photo",
+              "type": "file",
+              "uuid": "f38c28e8-8bfe-4c5b-a914-8d35a869233d",
+              "src": "/Users/eslam/Downloads/photo_2026-04-02 11.59.15.jpeg"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/signup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "signup"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "send-otp",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "tester",
+              "type": "text",
+              "uuid": "54ea55e7-a31f-4cda-a917-0d813af14fed"
+            },
+            {
+              "key": "password",
+              "value": "securePassword123",
+              "type": "text",
+              "uuid": "f422153f-c354-42af-b561-fd5628323b62"
+            },
+            {
+              "key": "phone",
+              "value": "+201234567890",
+              "type": "text",
+              "uuid": "20b30471-2fbe-4d5d-a526-5a3f9623ec0a"
+            },
+            {
+              "key": "whatsapp",
+              "value": "+201234567890",
+              "type": "text",
+              "uuid": "f1daa1ec-01b0-4565-827e-8c5b749dbc87"
+            },
+            {
+              "key": "gender",
+              "value": "male",
+              "type": "text",
+              "uuid": "1601799c-35ad-471f-80d4-ba9b49b51e85"
+            },
+            {
+              "key": "country",
+              "value": "1",
+              "type": "text",
+              "uuid": "596d17e9-3a3f-4edf-a02d-a51224ac354d"
+            },
+            {
+              "key": "job",
+              "value": "Software Engineer",
+              "type": "text",
+              "uuid": "62babe5b-d931-4acf-8791-514bf914ce29"
+            },
+            {
+              "key": "type",
+              "value": "Individual",
+              "type": "text",
+              "uuid": "dc67d85f-a815-48ef-a5a9-9616135305a8"
+            },
+            {
+              "key": "message",
+              "value": "Hello, I would like to register.",
+              "type": "text",
+              "uuid": "9b8067a1-b1fb-4d32-a0e8-c6c861870cf6"
+            },
+            {
+              "key": "code",
+              "value": "COMP123",
+              "type": "text",
+              "uuid": "d85e849e-60a9-462b-8449-c66e39d8c68e"
+            },
+            {
+              "key": "email",
+              "value": "test@tes.com",
+              "type": "text",
+              "uuid": "91cb8907-8148-4609-9086-4e3bbb3e19d2"
+            },
+            {
+              "key": "cv",
+              "type": "file",
+              "uuid": "4644781e-0bdb-489a-b409-c11d3606d255",
+              "src": "/Users/eslam/Downloads/Eslam_Samy_CV (1).pdf"
+            },
+            {
+              "key": "photo",
+              "type": "file",
+              "uuid": "f38c28e8-8bfe-4c5b-a914-8d35a869233d",
+              "src": "/Users/eslam/Downloads/photo_2026-04-02 11.59.15.jpeg"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/send-otp",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "send-otp"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "tester",
+              "type": "text",
+              "uuid": "54ea55e7-a31f-4cda-a917-0d813af14fed"
+            },
+            {
+              "key": "password",
+              "value": "securePassword123",
+              "type": "text",
+              "uuid": "f422153f-c354-42af-b561-fd5628323b62"
+            },
+            {
+              "key": "phone",
+              "value": "+201234567890",
+              "type": "text",
+              "uuid": "20b30471-2fbe-4d5d-a526-5a3f9623ec0a"
+            },
+            {
+              "key": "whatsapp",
+              "value": "+201234567890",
+              "type": "text",
+              "uuid": "f1daa1ec-01b0-4565-827e-8c5b749dbc87"
+            },
+            {
+              "key": "gender",
+              "value": "male",
+              "type": "text",
+              "uuid": "1601799c-35ad-471f-80d4-ba9b49b51e85"
+            },
+            {
+              "key": "country",
+              "value": "1",
+              "type": "text",
+              "uuid": "596d17e9-3a3f-4edf-a02d-a51224ac354d"
+            },
+            {
+              "key": "job",
+              "value": "Software Engineer",
+              "type": "text",
+              "uuid": "62babe5b-d931-4acf-8791-514bf914ce29"
+            },
+            {
+              "key": "type",
+              "value": "Individual",
+              "type": "text",
+              "uuid": "dc67d85f-a815-48ef-a5a9-9616135305a8"
+            },
+            {
+              "key": "message",
+              "value": "Hello, I would like to register.",
+              "type": "text",
+              "uuid": "9b8067a1-b1fb-4d32-a0e8-c6c861870cf6"
+            },
+            {
+              "key": "code",
+              "value": "COMP123",
+              "type": "text",
+              "uuid": "d85e849e-60a9-462b-8449-c66e39d8c68e"
+            },
+            {
+              "key": "email",
+              "value": "test@tes.com",
+              "type": "text",
+              "uuid": "91cb8907-8148-4609-9086-4e3bbb3e19d2"
+            },
+            {
+              "key": "cv",
+              "type": "file",
+              "uuid": "4644781e-0bdb-489a-b409-c11d3606d255",
+              "src": "/Users/eslam/Downloads/Eslam_Samy_CV (1).pdf"
+            },
+            {
+              "key": "photo",
+              "type": "file",
+              "uuid": "f38c28e8-8bfe-4c5b-a914-8d35a869233d",
+              "src": "/Users/eslam/Downloads/photo_2026-04-02 11.59.15.jpeg"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/signup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "signup"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "refresh",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"refreshToken\":\"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/refresh",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "refresh"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "test-login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidGVzdGVyIiwiaXNWZXJpZmllZCI6ZmFsc2UsInVzZXJJZCI6MSwiZW1haWwiOiJ0ZXN0QHRlcy5jb20iLCJyb2xlcyI6WyJST0xFX1NUVURFTlQiXSwic3ViIjoidGVzdEB0ZXMuY29tIiwiaWF0IjoxNzc2NDQ4NjYyLCJleHAiOjE3NzY1MzUwNjJ9.kK-PVhF7b-otNMNFXSqE-bCaYdUFUbYZMBboazvy5No",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"refreshToken\":\"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/test/me",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test",
+            "me"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "get-students",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiU3lzdGVtIFN1cGVyIEFkbWluIiwiaXNWZXJpZmllZCI6dHJ1ZSwidXNlcklkIjo3LCJlbWFpbCI6InN1cGVyYWRtaW5AcHltZXJzdGFuLmNvbSIsInJvbGVzIjpbIlJPTEVfU1VQRVJfQURNSU4iXSwic3ViIjoic3VwZXJhZG1pbkBweW1lcnN0YW4uY29tIiwiaWF0IjoxNzc2NjA4MDMyLCJleHAiOjE3NzY2OTQ0MzJ9.bDGnJzPNwUN4lWmjvTEwxbDgrqkorAV39m-OQ49-9HE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"refreshToken\":\"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/admin/students",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "admin",
+            "students"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    }
+  ]
+}

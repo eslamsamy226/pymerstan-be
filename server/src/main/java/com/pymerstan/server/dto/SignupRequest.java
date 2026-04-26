@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Data
 public class SignupRequest {
 
-    @NotBlank(message = "Name is required")
     @Schema(description = "User's full name", example = "John Doe")
     private String name;
 
@@ -22,13 +21,11 @@ public class SignupRequest {
     @Schema(description = "User's password", example = "securePassword123")
     private String password;
 
-    @NotBlank(message = "Phone number is required")
     @Schema(description = "User's phone number", example = "+201234567890")
     private String phone;
 
     @Schema(description = "User's WhatsApp number", example = "+201234567890")
     private String whatsapp;
-
 
     @Schema(description = "User's gender (Male/Female)", example = "Male")
     private String gender;
