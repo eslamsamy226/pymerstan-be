@@ -23,3 +23,7 @@
 hs_err_pid*
 replay_pid*
 server/.DS_Store
+.DS_Store
+.DS_Store
+/uploads/
+/.idea/

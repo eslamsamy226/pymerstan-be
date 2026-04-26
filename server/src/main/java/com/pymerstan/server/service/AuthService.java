@@ -45,10 +45,10 @@ public class AuthService {
         return claims;
     }
 
+    // --- Core Reusable User Creation Logic ---
     @Transactional
-    public AuthResponse signup(SignupRequest request) {
-
-        // --- 1. Validate File Types ---
+    public User createSystemUser(SignupRequest request, String roleName, boolean isVerified) {
+        // 1. Validate File Types
         if (request.getPhoto() != null && !request.getPhoto().isEmpty()) {
             String photoType = request.getPhoto().getContentType();
             if (photoType == null || !photoType.startsWith("image/")) {
@@ -63,17 +63,24 @@ public class AuthService {
             }
         }
 
-        // --- 2. Existing Logic ---
+        // 2. Validate Uniqueness
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new IllegalArgumentException("Email is already in use");
         }
 
+        // 3. Save Files
         String photoFileName = fileStorageService.savePhoto(request.getPhoto());
         String cvFileName = fileStorageService.saveCv(request.getCv());
 
-        Role studentRole = roleRepository.findByName("STUDENT")
-                .orElseThrow(() -> new RuntimeException("Default role STUDENT not found."));
+        // 4. Resolve Role
+        Role role = roleRepository.findByName(roleName)
+                .orElseThrow(() -> new RuntimeException("Role " + roleName + " not found."));
 
+        // 5. Determine if profile data is completed
+        boolean isDataCompleted = request.getName() != null && !request.getName().trim().isEmpty()
+                && request.getPhone() != null && !request.getPhone().trim().isEmpty();
+
+        // 6. Map to Entity
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -90,15 +97,18 @@ public class AuthService {
         user.setCv(cvFileName);
 
         user.setAddedDate(LocalDateTime.now());
-        user.setRoles(Collections.singleton(studentRole));
+        user.setRoles(Collections.singleton(role));
         user.setVisible(true);
-        user.setVerified(false);
-        user.setDataCompleted(true);
+        user.setVerified(isVerified);
+        user.setDataCompleted(isDataCompleted);
 
-        // Save User to generate the ID
-        user = userRepository.save(user);
+        return userRepository.save(user);
+    }
 
-        // Generate Tokens with Custom Claims
+    @Transactional
+    public AuthResponse signup(SignupRequest request) {
+        User user = createSystemUser(request, "STUDENT", false);
+
         UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
         Map<String, Object> extraClaims = generateCustomClaims(user);
 
@@ -116,7 +126,6 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
 
-        // Fetch the user entity to get the custom fields
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -165,7 +174,6 @@ public class AuthService {
 
         String otpCode = generateRandomOtp();
 
-        // Create or Update OTP record
         UserOtp userOtp = userOtpRepository.findByUserId(user.getId())
                 .orElse(new UserOtp());
 
@@ -199,11 +207,8 @@ public class AuthService {
             throw new IllegalArgumentException("Invalid OTP.");
         }
 
-        // Verification successful
         user.setVerified(true);
         userRepository.save(user);
-
-        // Clean up OTP record
         userOtpRepository.delete(userOtp);
 
         return "User successfully verified.";
@@ -213,5 +218,4 @@ public class AuthService {
         int randomPin = (int) (Math.random() * 900000) + 100000;
         return String.valueOf(randomPin);
     }
-
 }
